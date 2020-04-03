@@ -1,0 +1,40 @@
+<html>
+<body>
+<script>
+
+console.log("*****************************************")
+let raza = 10;
+let aria = Math.PI * raza ** 2;
+console.log("Aria cercului cu raza 10 este " + aria + ".");
+console.log("*****************************************")
+var tabel = ["Road Trip","Boat Trip", "Married with Children", "The Nun", "James Bond: Skyfall"];
+console.log(tabel);
+for(let i = 0; i <= 4; i++){
+    console.log(tabel[i] + " este filmul cu indexul " + i + " din tabel.");
+}
+console.log("*****************************************")
+var tabel2 = [5, 3, "1", 7, "9", 30, "45", 7];
+console.log(tabel2);
+console.log("The max value of the array is " + Math.max(5, 3, "1", 7, "9", 30, "45", 7));
+console.log("The min value of the array is " + Math.min(5, 3, "1", 7, "9", 30, "45", 7));
+let maxVar = tabel2[0];
+let minVar = tabel2[0];
+for(let i = 0; i <= tabel2.length; i++){
+    if(maxVar < tabel2[i]){
+        maxVar = tabel2[i];
+    }
+}
+console.log("The maximum value of the array is: " + maxVar);
+for(let i = 0; i <= tabel2.length; i++){
+    if(minVar > tabel2[i]){
+        minVar = tabel2[i];
+    }
+}
+console.log("The minimum value of the array is: " + minVar);
+console.log("*****************************************")
+
+
+
+</script>
+</body>
+</html>
