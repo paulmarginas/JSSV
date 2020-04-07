@@ -1,0 +1,178 @@
+<html>
+    <body>
+   
+        <script>
+
+            console.log("*********Exercitiul 1**********")
+            let lei = 749;
+            let valuta = "USD";
+            switch(valuta){
+                case "EUR":
+                    let eur = lei / 4.83;
+                    console.log("749 lei in EUR: " + eur + " euro")
+                    break;
+                case "HUF":
+                    let huf = lei / 0.013;
+                    console.log("749 lei in HUF: " + huf + " huf")
+                    break;
+                case "USD":
+                    let usd = lei / 4.47;
+                    console.log("749 lei in USD: " + usd + " usd")
+                    break;
+                default:
+                    console.log("Nu a fost introdusa corect valuta!")   
+            }
+
+            console.log("*********Exercitiul 2**********")
+            let x;
+            function exercise2(x){
+                console.log("The parameter entered is of type: " + typeof x);
+            }
+            exercise2("parametru");
+
+            console.log("*********Exercitiul 3**********")
+            const fraze = ["Quisque faucibus ipsum id nibh egestas bibendum.",
+                        "Phasellus tincidunt sapien nec est tempus lacinia.",
+                        "Curabitur ac elit at turpis ultrices hendrerit at et tellus.",
+                        "Praesent a magna a ligula gravida sodales eu ut erat.",
+                        "Ut eleifend velit vitae ipsum mattis viverra."]
+            function functie(string){
+                var result = "";
+                var split = fraze.toString().split(/(?:,| )+/);   
+                 for(let i = 0; i < split.length; i++){
+                    let ex = split[i].charAt(0);
+                    result += ex; 
+                } 
+                 console.log(result);
+            }
+            functie(fraze);
+
+            console.log("*********Exercitiul 4**********")
+            class Shapes {
+                constructor(culoare, laturi){
+                    this.culoare = culoare;
+                    this.laturi = laturi;
+                }
+                calcPerimetru(){
+                    console.log("Culoarea formei este: " + this.culoare);
+                    let perimeter = 0;
+                    for(let i = 0; i < this.laturi.length; i++){
+                        perimeter += this.laturi[i];
+                    }
+                    console.log("Perimetru = " + perimeter);        
+                }
+
+                calcSemiperimetru(){
+                    let semiPerimetru = 0;
+                    for(let i = 0; i < this.laturi.length; i++){
+                        semiPerimetru += this.laturi[i];
+                    }
+                    console.log("Semiperimetru = " + (semiPerimetru/2)); 
+                }
+
+                tipPoligon(){
+                    let counter = 0;
+                    for(let i = 0; i < this.laturi.length; i++){
+                        counter++
+                    }
+                    switch(counter){
+                            case 3:
+                                console.log("Tip poligon: Triunghi");
+                                break;
+                            case 4:
+                                console.log("Tip poligon: Patrulater");
+                                break;
+                            case 5:
+                                console.log("Tip poligon: Pentagon");
+                                break;
+                            case 6:
+                                console.log("Tip poligon: Hexagon");
+                                break;
+                            default:
+                            console.log("WORK IN PROGRESS");       
+                    }
+                } 
+            }
+            var patrat = new Shapes("albastru",[1,2,3,4,5,6]);
+            patrat.calcPerimetru();
+            patrat.calcSemiperimetru();
+            patrat.tipPoligon();
+            
+            console.log("*********Exercitiul 5**********")
+            class extindeShapes1 extends Shapes{
+                constructor(culoare, laturi){
+                    super(culoare, laturi);
+                }
+                calcAria(){
+                    let counter = 0;
+                    for(let i = 0; i < this.laturi.length; i++){
+                        let lat = i;
+                        counter++;
+                    }
+                    switch(counter){
+                        case 3:
+                            var sp = (this.laturi[0] + this.laturi[1] + this.laturi[2]);
+                            var aria = Math.sqrt(sp*(sp-this.l1)*(sp-this.l2)*(sp-this.l3));
+                            console.log("Aria triunghiului = " + aria);
+                            break;
+                        case 4:
+                            aria = this.laturi[0] * this.laturi[1];
+                            console.log("Aria patrulaterului = " + aria);
+                            break; 
+                        case 5:
+                            aria = 1.720477400588951 * (this.laturi[0] ** 2);
+                            console.log("Aria pentagonului = " + aria);
+                            break; 
+                        case 6:
+                            aria = 2.598076211353316 * (this.laturi[0] ** 2);
+                            console.log("Aria hexagonului = " + aria);
+                            break;          
+                    }   
+                }
+            }
+
+            class extindeShapes2 extends Shapes{
+                constructor(culoare, laturi){
+                    super(culoare, laturi);
+                }
+                calcAria(){
+                    let counter = 0;
+                    for(let i = 0; i < this.laturi.length; i++){
+                        let lat = i;
+                        counter++;
+                    }
+                    switch(counter){
+                        case 3:
+                            var sp = (this.laturi[0] + this.laturi[1] + this.laturi[2]);
+                            var aria = Math.sqrt(sp*(sp-this.laturi[0])*(sp-this.laturi[1])*(sp-this.laturi[2]));
+                            console.log("Aria triunghiului = " + aria);
+                            break;
+                        case 4:
+                            aria = this.laturi[0] * this.laturi[1];
+                            console.log("Aria patrulaterului = " + aria);
+                            break; 
+                        case 5:
+                            aria = 1.720477400588951 * (this.laturi[0] ** 2);
+                            console.log("Aria pentagonului = " + aria);
+                            break; 
+                        case 6:
+                            aria = 2.598076211353316 * (this.laturi[0] ** 2);
+                            console.log("Aria hexagonului = " + aria);
+                            break;          
+                    }   
+                }
+            }
+            var forma1 = new extindeShapes1("rosu",[4,7,5,5]);
+            forma1.calcPerimetru();
+            forma1.calcSemiperimetru();
+            forma1.tipPoligon();
+            forma1.calcAria();
+
+            var forma2 = new extindeShapes2("verde",[5,3,4]);
+            forma2.calcPerimetru();
+            forma2.calcSemiperimetru();
+            forma2.tipPoligon();
+            forma2.calcAria();
+        </script>
+    </body>
+</html>
