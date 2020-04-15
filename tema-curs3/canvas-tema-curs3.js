@@ -1,48 +1,64 @@
-const canvas = document.createElement("canvas");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-document.getElementById("playground").append(canvas);
-const context = canvas.getContext("2d");
+const canvas1 = document.createElement("c1");
+canvas1.width = 350;
+canvas1.height = 200;
+document.getElementById("c1").append(canvas1);
+const context1 = c1.getContext("2d");
 
 console.log("************************************");
-context.beginPath();
-context.arc(200,300,100,0,2 * Math.PI);
-context.stroke();
-context.fillStyle = "red";
-context.fill();
-context.closePath();
+context1.beginPath();
+context1.arc(50,50,35,0,2 * Math.PI);
+context1.stroke();
+context1.fillStyle = "red";
+context1.fill();
+context1.closePath();
 
 console.log("************************************");
+const canvas2 = document.createElement("c2");
+canvas2.width = 350;
+canvas2.height = 200;
+document.getElementById("c2").append(canvas2);
+const context2 = c2.getContext("2d");
+
 function draw(numberOfSides){
-context.beginPath();
+context2.beginPath();
 if(numberOfSides == 3){
-    context.moveTo(100, 100);
-    context.lineTo(100, 300);
-    context.lineTo(300, 300);
+    context2.moveTo(20, 20);
+    context2.lineTo(20, 70);
+    context2.lineTo(70, 70);
+    context2.fillStyle = "blue";
 } else if (numberOfSides == 4){
-    context.rect(100,100,50,50);
+    context2.rect(80,80,50,50);
+    context2.fillStyle = "red";
 } else if(numberOfSides == 5){
     const angle = 2 * Math.PI/5;
-    context.moveTo(125 + 100 * Math.cos(0), 125 + 100 * Math.sin(0));
+    context2.moveTo(175 + 40 * Math.cos(0), 100 + 40 * Math.sin(0));
     for (let i = 1; i <= 5; i++) {
-        context.lineTo (125 + 100 * Math.cos(i * angle), 125 + 100 * Math.sin(i * angle));
+        context2.lineTo (175 + 40 * Math.cos(i * angle), 100 + 40 * Math.sin(i * angle));
    }
+   context2.fillStyle = "yellow";
 } else if (numberOfSides == 6){
-    context.moveTo (250 +  200 * Math.cos(0), 250 +  200 *  Math.sin(0));          
+    context2.moveTo (260 +  40 * Math.cos(0), 100 + 40 *  Math.sin(0));          
     for (let i = 1; i <= 6;i += 1) {
-        context.lineTo (250 + 200 * Math.cos(i * 2 * Math.PI / 6), 250 + 200 * Math.sin(i * 2 * Math.PI / 6));
+        context2.lineTo (260 + 40 * Math.cos(i * 2 * Math.PI / 6), 100 + 40 * Math.sin(i * 2 * Math.PI / 6));
     }
-} else {
-    context.arc(200,200,100,0,2 * Math.PI);
+    context2.fillStyle = "green";
 }
-context.stroke();
-context.fillStyle = "blue";
-context.fill();
-context.closePath();
+context2.stroke();
+context2.fill();
+context2.closePath();
 }
+draw(3);
+draw(4);
 draw(5);
+draw(6);
+
 
 console.log("************************************");
+const canvas3 = document.createElement("c3");
+canvas3.width = 350;
+canvas3.height = 200;
+document.getElementById("c3").append(canvas3);
+const context3 = c3.getContext("2d");
 class Circle{
     constructor(x, y, radius, color){
         this.x = x;
@@ -52,21 +68,20 @@ class Circle{
         this.dx = 1;
     }
     draw(){
-        context.beginPath();
-        context.arc(
+        context3.beginPath();
+        context3.arc(
             this.x,
             this.y,
             this.radius,
             0,
             2 * Math.PI
         );
-        context.stroke();
-        context.fillStyle = this.color;
-        context.fill();
-        context.closePath();
+        context3.stroke();
+        context3.fillStyle = this.color;
+        context3.fill();
+        context3.closePath();
     }
     move(byX){
-        this.changeCircleDirectionWhenBoundryReached();
         if(this.dx == 1){
             this.color = "red";
             this.radius++;
@@ -74,11 +89,12 @@ class Circle{
             this.color = "blue";
             this.radius--;
         }
+        this.changeCircleDirectionWhenBoundryReached();
         this.x += byX * this.dx;
         this.draw();
     }
     changeCircleDirectionWhenBoundryReached(){
-        if(this.x >= canvas.width - this.radius){
+        if(this.x >= canvas3.width - this.radius){
             this.dx = -1;
         }
         if(this.x <= this.radius){
@@ -86,15 +102,20 @@ class Circle{
         }
     }
 }
-const circle = new Circle(100,150,75);
+const circle = new Circle(80,80,20);
 function animateCircle(){
     console.log("se apeleaza");
-    context.clearRect(0, 0, canvas.width, canvas.height);
+    context3.clearRect(0, 0, canvas3.width, canvas3.height);
     circle.move(10);
 }
-setInterval(animateCircle, 500);
+setInterval(animateCircle, 50);
 
-console.log("************************************");
+// console.log("************************************");
+const canvas4 = document.createElement("c4");
+canvas4.width = 350;
+canvas4.height = 650;
+document.getElementById("c4").append(canvas4);
+const context4 = c4.getContext("2d");
 class Cell{
     constructor(x, y, color){
         this.x = x;
@@ -102,18 +123,16 @@ class Cell{
         this.color = color;
     }
     draw(){
-        context.beginPath();
-        context.fillStyle = this.color;
-        context.rect(this.y * 30, this.x * 30, 30, 30);
-        context.fill();
-        context.stroke();
-        context.closePath();
+        context4.beginPath();
+        context4.fillStyle = this.color;
+        context4.rect(this.y * 20, this.x * 20, 20, 20);
+        context4.fill();
+        context4.stroke();
+        context4.closePath();
     }
 }
 const rows = 20;
 const colomns = 10;
-const width = 30;
-const height = 30;
 
 let grid = [];
 
@@ -149,23 +168,28 @@ const drawGrid = () => {
 createGrid();
 drawGrid();
 
-console.log("************************************");
+// console.log("************************************");
+const canvas5 = document.createElement("c5");
+canvas5.width = 350;
+canvas5.height = 350;
+document.getElementById("c5").append(canvas5);
+const context5 = c5.getContext("2d");
 class Square{
     constructor(row, colomn){
         this.row = row;
         this.colomn = colomn;
     }
     draw(){
-        context.beginPath(); 
+        context5.beginPath(); 
         let grid = [];
-        for(let i = this.row; i < (this.row+5); i++){
+        for(let i = this.row; i < (this.row+3); i++){
             grid[i] = [];
-            for(let j = this.colomn; j < (this.colomn+5); j++){
-                context.rect(i * 30, j * 30, 30, 30);
-                context.stroke();
+            for(let j = this.colomn; j < (this.colomn+3); j++){
+                context5.rect(i * 30, j * 30, 30, 30);
+                context5.stroke();
             }
         }
-        context.closePath();
+        context5.closePath();
     }
 }
 const square = new Square(2,3)
