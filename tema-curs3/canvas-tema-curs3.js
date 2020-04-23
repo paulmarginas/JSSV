@@ -180,10 +180,8 @@ class Square{
         this.colomn = colomn;
     }
     draw(){
-        context5.beginPath(); 
-        let grid = [];
+        context5.beginPath();
         for(let i = this.row; i < (this.row+3); i++){
-            grid[i] = [];
             for(let j = this.colomn; j < (this.colomn+3); j++){
                 context5.rect(i * 30, j * 30, 30, 30);
                 context5.stroke();
