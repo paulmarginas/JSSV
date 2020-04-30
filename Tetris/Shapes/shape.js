@@ -1,58 +1,11 @@
 export class Shape {
-    constructor(row, column, template, cells) {
+    constructor(row, column, cells, color) {
         this.row = row;
         this.column = column;
         this.cells = cells;
-        switch (template) {
-            case "L":
-                this.template = [
-                    [1, 0],
-                    [1, 0],
-                    [1, 1]
-                ];
-                break;
-            case "S":
-                this.template = [
-                    [0, 1, 1],
-                    [1, 1, 0]
-                ];
-                break;
-            case "T":
-                this.template = [
-                    [1, 1, 1],
-                    [0, 1, 0]
-                ];
-                break;
-            case "Z":
-                this.template = [
-                    [1, 1, 0],
-                    [0, 1, 1]
-                ];
-                break;
-            case "O":
-                this.template = [
-                    [1, 1],
-                    [1, 1]
-                ];
-                break;
-            case "I":
-                this.template = [
-                    [1],
-                    [1],
-                    [1],
-                    [1]
-                ];
-                break;
-            case "J":
-                this.template = [
-                    [0, 1],
-                    [0, 1],
-                    [1, 1]
-                ];
-                break;
-        }
-
-        this.color = "orange";
+        this.color = color;
+        this.templateIndex = 0;
+        
     }
 
     draw() {
@@ -60,20 +13,28 @@ export class Shape {
             for (let column = 0; column < this.template[row].length; column++) {
                 if (this.template[row][column] === 1) {
                     this.cells[this.row + row][this.column + column].draw(this.color);
+                    this.cells[this.row + row][this.column + column].isEmpty = false;
                 }
             }
         }
     }
-    up() {
-        this.row--;
+
+    clear() {
+        for (let row = 0; row < this.template.length; row++) {
+            for (let column = 0; column < this.template[row].length; column++) {
+                if (this.template[row][column] === 1) {
+                    this.cells[this.row + row][this.column + column].draw("#7facf5");
+                    this.cells[this.row + row][this.column + column].isEmpty = true;;
+                }
+            }
+        }
     }
-    down() {
-        this.row++;
-    }
-    left() {
-        this.column--;
-    }
-    right() {
-        this.column++;
+
+    rotate(){
+        const length = this.getTemplates().length;
+        this.clear();
+        this.templateIndex++;
+        this.template = this.getTemplates()[this.templateIndex % length];
+        this.draw();
     }
 }
